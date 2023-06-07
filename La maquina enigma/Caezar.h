@@ -9,6 +9,7 @@ private://atributos
     nodoArbolC* izquierdo;
     nodoArbolC* derecho;
     };
+
     
     nodoArbolC* arbol;
 

@@ -19,6 +19,7 @@ Atbash::nodoArbolA* Atbash::vaciar(Atbash::nodoArbolA* arbol) {//elimina el nodo
 	return nullptr;
 }
 
+
 //inserta valores al los nodos del árbol
 Atbash::nodoArbolA* Atbash::insertar(char letra, int numero, char equivalente, Atbash::nodoArbolA* arbol) {
 	if (arbol == nullptr) {

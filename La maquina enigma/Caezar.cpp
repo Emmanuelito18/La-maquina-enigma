@@ -19,6 +19,7 @@ Caezar::nodoArbolC* Caezar::vaciar(Caezar::nodoArbolC* arbol) {//elimina el nodo
 	return nullptr;
 }
 
+
 //inserta valores al los nodos del árbol
 Caezar::nodoArbolC* Caezar::insertar(char letra, int numero, char equivalente, Caezar::nodoArbolC* arbol) {
 	if (arbol == nullptr) {

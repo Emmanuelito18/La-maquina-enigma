@@ -13,6 +13,7 @@ private://atributos
 		nodoArbolA* derecho;
 	};
 
+
 	nodoArbolA* arbol;//es el nodo del árbol
 
 	nodoArbolA* vaciar(nodoArbolA* arbol);
