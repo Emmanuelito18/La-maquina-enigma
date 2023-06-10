@@ -6,14 +6,14 @@
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Struct Name="Atbash::nodoArbolA" Collapsed="true">
+      <Struct Name="Atbash::nodoArbolA">
         <TypeIdentifier>
           <NewMemberFileName>Atbash.h</NewMemberFileName>
         </TypeIdentifier>
       </Struct>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAACAAACAAAAgAAAACAhgAAABAIAAAAAAAAAAAAASAA=</HashCode>
+      <HashCode>AAAAAAAAAABAgAAAACBgAAAABAIAAAAAAEAABAAASAA=</HashCode>
       <FileName>Atbash.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -23,7 +23,7 @@
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Struct Name="Caezar::nodoArbolC" Collapsed="true">
+      <Struct Name="Caezar::nodoArbolC">
         <TypeIdentifier>
           <NewMemberFileName>Caezar.h</NewMemberFileName>
         </TypeIdentifier>

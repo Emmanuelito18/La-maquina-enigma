@@ -48,25 +48,17 @@ void Resultado(void);
 
 //declaración de variables globales
 const int capacidad = 1000;
-char texto[capacidad], textoA[capacidad], textoC[capacidad];
-
+char texto[capacidad]={'t','r','o','z','o'}, textoA[capacidad], textoC[capacidad];
 string nombre;//variable para el uso del archivo .txt 
 
 const int TAM = 95;
-char abecedario[TAM] = { 'A','a','B','b','C','c','D','d','E','e','F','f','G','g','H','h','I','i','J','j','K','k','L','l','M','m','N','n','O','o','P','p','Q','q','R','r','S','s','T','t',
-'U','u','V','v','W','w','X','x','Y','y','Z','z',' ','!','"','#','$','%','&','\39','(',')','*','\43',',','\45','.','/','0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','@',
-'[','\92',']','\94','_','\96','{','\124','}','~'};
+char abecedario[TAM] = { '/','O','7','<','X','"','i','3','B','>','~','F','Q','a','P','Y','6','%','e',' ','u','I','c','V','{',';','L','t','n','b','5','|','H','[','p','E','A','D','`','U','&',')','\\','g','v','N','o','f','R','M','z','=','W','y','J','$','}','#','(','8','9','_','+','Z','h','0',':','^',',','2','-','1','w','S',']','G','?','T','r','x','*','k','4','d','C','@','m','q','.','j','\'','s','l','K','!' };
+ 
+char abecedarioA[TAM] = { '/','L','7','<','X','"','r','3','Y','>','~','U','J','z','K','B','6','%','v',' ','f','R','x','E','{',';','O','G','m','y','5','|','S','[','k','V','Z','W','`','F','&',')','\\','t','e','M','l','u','i','N','a','=','D','b','Q','$','}','#',')','8','9','_','+','A','s','0',':','^','2','-','1','d','H',']','T','?','G','i','c','*','p','4','w','x','@','n','j','.','q','\'','h','o','p','!' };
 
-char abecedarioA[TAM] = { 'Z','z','Y','y','X','x','W','w','V','v','U','u','T','t','S','s','R','r','Q','q','P','p','O','o','N','n','M','m','L','l','K','k','J','j','I','i','H','h','G','g','F','f',
-'E','e','D','d','C','c','B','b','A','a',' ','!','"','#','$','%','&','\39','(',')','*','\43',',','\45','.','/','0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','@',
-'[','\92',']','\94','_','\96','{','\124','}','~' };
+char abecedarioC[TAM] = { '/','L','7','<','U','"','f','3','Y','>','~','C','N','x','M','V','6','%','b',' ','r','F','z','S','{',';','i','q','k','y','5','|','E','[','m','B','X','A','`','R','&',')','\\','d','s','K','l','c','O','J','w','=','T','v','G','$','}','#','(','8','9','_','+','W','e','0',':','^',',','2','-','1','t','P',']','D','?','Q','o','u','*','h','4','a','Z','@','j','n','.','g','\'','p','i','H','!'};
 
-char abecedarioC[TAM] = {'X','x','Y','y','Z','z','A','a','B','b','C','c','D','d','E','e','F','f','G','g','H','h','I','i','J','j','K','k','L','l','M','m','N','n','O','o','P','p','Q','q','R','r','S','s',
-'T','t','U','u','V','v','W','w',' ','!','"','#','$','%','&','\39','(',')','*','\43',',','\45','.','/','0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','@',
-'[','\92',']','\94','_','\96','{','\124','}','~' };
-
-int espacio[TAM]={65,97,66,98,67,99,68,100,69,101,70,102,71,103,72,104,73,105,74,106,75,107,76,108,77,109,78,110,79,111,80,112,81,113,82,114,83,115,84,116,85,117,86,118,87,119,88,120,89,121,90,122,
-32,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,91,92,93,94,95,96,123,124,125,126};
+int espacio[TAM]={47,79,55,60,88,34,105,51,66,62,126,70,81,97,80,89,54,37,101,32,117,73,99,86,123,59,76,116,110,98,53,124,72,91,112,69,65,68,96,85,38,41,92,103,118,78,111,102,82,77,122,61,87,121,74,36,125,35,40,56,57,95,43,90,104,48,58,94,44,50,45,49,119,83,93,71,63,84,114,120,42,107,52,100,67,64,109,113,46,106,39,115,108,75,33};
 
 int main() {
 	
@@ -91,7 +83,6 @@ int main() {
 	//código temporal para probar el programa
 	manual();
 	//Menu();
-	
 	//parte final del código
 	cout << "Esta es la parte final del programa" << endl;
 	cout << "Que la fuerza de velocidad te acompañe" << endl << endl;
@@ -216,8 +207,8 @@ void Menu() {
 
 //Inserción de texto a cifrar
 void manual() {
-	cout << "Ingrese el texto a cifrar: "<<endl;
-	cin.getline(texto, 1000, '\n');//parte el texto ingresado por letras
+	/*cout << "Ingrese el texto a cifrar: " << endl;
+	cin.getline(texto, 1000, '\n');//parte el texto ingresado por letras*/
 	/*
 	for (int i = 0; i < strlen(texto); i++) {//para saber que hay en cada espacio del arreglo
 		cout << texto[i] << endl;
@@ -237,17 +228,22 @@ void documentoTexto() {
 // Cifrados
 void CAtbash() {
 	char caracter = NULL,salida;
+	int entero = NULL;
 	for (int i = 0; i <strlen(texto); i++) {//para recorrer el arreglo mientras no haya un caracter nulo \n
-		caracter = texto[i];
-		textoA[i] = primero.encontrar(caracter);
-		Sleep(250);
+		caracter = texto[i];//guardo el caracter en una variable
+		entero=int(caracter);//convierto el caracter a su valor en la tabla ASCII
+		/*textoA[i] = */ primero.buscar(entero);//busco el caracter en el árbol
 	}
 	CCaezar(textoA,capacidad);
 }
 
 void CCaezar(char textoA[],int capacidad) {
+	char caracter = NULL,salida;
+	int entero = NULL;
 	for (int i = 0; i < strlen(textoA); i++) {
-		textoC[i] = segundo.encontrar(textoA[i]);
+		caracter = textoA[i];
+		entero=int(caracter);
+		/*textoC[i] = */ segundo.encontrar(entero);
 	}
 }
 
@@ -255,14 +251,15 @@ void CCaezar(char textoA[],int capacidad) {
 void llenadoAtbash(char abecedario[],int tam_letra,int espacio[],int tam_espacio,char abecedarioA[],int tam) {
 	char caracter=NULL;
 	int indice=NULL;
-	char aux = NULL;
+	char salida = NULL;
+
 	for (int i = 0; i < 95; i++) {
 		caracter = abecedario[i];
 		indice = espacio[i];
-		aux = abecedarioA[i];
-		primero.ingresar(caracter, indice,aux);
-		//primero.ver();
+		salida = abecedarioA[i];
+		primero.ingresar(caracter, indice,salida);
 	}
+	primero.ver();
 }
 
 void llenadoCaezar(char abecedario[],int tam_letra, int espacio[],int tam_espacio,char abecedarioC[],int tam) {

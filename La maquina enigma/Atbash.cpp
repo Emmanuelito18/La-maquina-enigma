@@ -7,59 +7,78 @@
 using namespace std;
 
 //atributos
-Atbash::nodoArbolA* Atbash::vaciar(Atbash::nodoArbolA* arbol) {//elimina el nodo del árbol, se utiliza cuando se cuierra el programa
-	if (arbol == nullptr) {//si el árbol está vacio
-		return nullptr;
+//Función para crear un nuevo nodo
+Atbash::nodoArbolA* Atbash::crearNodo(char letra, int indice, char salida, Atbash::nodoArbolA* padre) {
+	nodoArbolA* nuevoNodo = new nodoArbolA();
+
+	nuevoNodo->letra = letra;
+	nuevoNodo->indice = indice;
+	nuevoNodo->salida = salida;
+	nuevoNodo->izquierdo = NULL;
+	nuevoNodo->derecho = NULL;
+	nuevoNodo->padre = padre;
+
+	return nuevoNodo;
+}
+
+//Función para insertar un nodo en el árbol
+void Atbash::insertarNodo(Atbash::nodoArbolA*& arbol, char letra, int indice, char salida, nodoArbolA* padre) {
+	if (arbol == NULL) {//si el árbol está vacío
+		nodoArbolA* nuevoNodo = crearNodo(letra, indice, salida, padre);//creamos un nuevo nodo
+		arbol = nuevoNodo;//el nuevo nodo es ahora la raíz del árbol
+	}
+	else {//si el árbol no está vacío
+		int valorRaiz = arbol->indice;//obtenemos el valor de la raíz
+		if (indice < valorRaiz) {//si el valor a insertar es menor que la raíz, insertamos en izquierda
+			insertarNodo(arbol->izquierdo, letra, indice, salida, arbol);
+		}
+		else {//si el valor a insertar es mayor que la raíz, insertamos en derecha
+			insertarNodo(arbol->derecho, letra, indice, salida, arbol);
+		}
+	}
+}
+
+//Función para mostrar el árbol completo
+void Atbash::mostrarArbol(Atbash::nodoArbolA* arbol, int cont) {
+	if (arbol == NULL) {//si el árbol está vacio
+		return;//No haces nada
 	}
 	else {
-		vaciar(arbol->izquierdo);
-		vaciar(arbol->derecho);
-		delete arbol;
+		mostrarArbol(arbol->derecho, cont + 1);//recorremos subarbol derecho
+		for(int i=0;i<cont;i++) {//damos espaciado
+					cout << "   ";
+		}
+		cout<<arbol->letra<<" : "<<arbol->indice<<" : "<<arbol->salida<<endl;//imprimimos raiz
+		mostrarArbol(arbol->izquierdo, cont + 1);//recorremos subarbol izquierdo
 	}
-	return nullptr;
 }
 
-
-//inserta valores al los nodos del árbol
-Atbash::nodoArbolA* Atbash::insertar(char letra, int numero, char equivalente, Atbash::nodoArbolA* arbol) {
-	if (arbol == nullptr) {
-		arbol = new nodoArbolA;
-		arbol->letra = letra;
-		arbol->indice = numero;
-		arbol->salida = equivalente;
-		arbol->izquierdo = arbol->derecho = nullptr;
+//Función para buscar un nodo en el árbol
+bool Atbash::busqueda(Atbash::nodoArbolA* arbol, int indice) {
+	if (arbol == NULL) {//si el árbol está vacío
+			return false;//No haces nada
 	}
-	else if (numero < arbol->indice)
-		arbol->izquierdo = insertar(letra, numero, equivalente, arbol->izquierdo);
-	else if (numero > arbol->indice)
-		arbol->derecho = insertar(letra, numero, equivalente, arbol->derecho);
-	return arbol;
+	else if (arbol->indice == indice) {//Si el nodo es igual al elemento
+		return true;
+	}
+	else if(indice < arbol->indice) {//Si el elemento es menor al nodo
+			return busqueda(arbol->izquierdo, indice);//Buscamos en el subárbol izquierdo
+		}
+	else {//Si el elemento es mayor al nodo
+			return busqueda(arbol->derecho, indice);//Buscamos en el subárbol derecho
+		}
 }
 
-void Atbash::InOrder(Atbash::nodoArbolA* arbol) {//muestra el árbol completo, solo utilizado para depuración
-	if (arbol == nullptr)
-		return;
-	InOrder(arbol->izquierdo);
-	cout << arbol->letra << ":" << arbol->indice << ":" << arbol->salida << "  ";
-	InOrder(arbol->derecho);
-}
-
-/*Busca caracteres ingresados por el usuario en le árbol*/
-Atbash::nodoArbolA* Atbash::buscar(Atbash::nodoArbolA* arbol, char caracter, bool& encontrado) {
-	if (arbol == nullptr) {
-		encontrado = false;
-		return nullptr;
-	}
-	else if (caracter < arbol->letra) {
-		return buscar(arbol->izquierdo, caracter, encontrado);
-	}
-	else if (caracter > arbol->letra) {
-		return buscar(arbol->derecho, caracter, encontrado);
-	}
-	else {
-		encontrado = true;
-		return arbol;
-	}
+//Función para recorrido en profundidad - PreOrden
+void Atbash::preOrden(Atbash::nodoArbolA* arbol) {
+	if (arbol == NULL) {//si el árbol está vacío
+			return;//No haces nada
+		}
+	else {//Si no está vacío
+			cout << arbol->letra << " : " << arbol->indice << " : " << arbol->salida << " - ";//Imprimimos la raíz
+			preOrden(arbol->izquierdo);//Recorremos subárbol izquierdo
+			preOrden(arbol->derecho);//Recorremos subárbol derecho
+		}
 }
 
 //Constructor
@@ -69,30 +88,44 @@ Atbash::Atbash() {
 
 //Destructor
 Atbash::~Atbash() {
-	arbol= vaciar(arbol);
-}
-  
-void Atbash::ingresar(char caracter, int indice,char equivalente) {
-	arbol = insertar(caracter, indice, equivalente, arbol);
+	
 }
 
+//Método ingresar elementos al árbol
+void Atbash::ingresar(char letra, int indice,char salida) {
+	insertarNodo(arbol, letra, indice, salida, NULL);//Insertamos un nuevo nodo llamando a la función insertarNodo
+}
+
+//Método mostrar árbol
 void Atbash::ver() {
-	InOrder(arbol);
-	cout << endl;
+	int contador = 0;
+	mostrarArbol(arbol, contador);//Llamamos a la función mostrarArbol
 }
 
-char Atbash::encontrar(char caracter) {
-	char resultado=NULL;
-	bool encontrado = false;
-	arbol = buscar(arbol, caracter, encontrado);
-	if (encontrado) {
-		cout << "El caracter '" << caracter << "' se ha encontrado en el árbol." << endl;
-		cout << "Indice: " << arbol->indice << endl;
-		cout << "Equivalencia: " << arbol->salida<<endl;
-		resultado = arbol->salida;
+//Método buscar un elemento en el árbol
+void Atbash::buscar(int indice) {
+
+	if (busqueda(arbol, indice) == true) {
+		cout << "El elemento " << indice << " ha sido encontrado en el arbol" << endl;
 	}
 	else {
-		cout << "El caracter '" << caracter << "' no se ha encontrado en el árbol." << endl;
+		cout << "El elemento " << indice << " no ha sido encontrado en el arbol" << endl;
 	}
-	return resultado;//este valor se debe guardar en el arreglo textoA
 }
+
+/*
+void Atbash::encriptar(char* textoA, char* textoB) {
+	int i = 0;
+	while (textoA[i] != '\0') {
+		textoB[i] = encontrar(textoA[i]);
+		i++;
+	}
+}
+
+void Atbash::desencriptar(char* textoA, char* textoB) {
+	int i = 0;
+	while (textoA[i] != '\0') {
+		textoB[i] = encontrar(textoA[i]);
+		i++;
+	}
+}*/
