@@ -104,7 +104,7 @@ void Caezar::ver() {
 	mostrarArbol(arbol, contador);//Llamamos a la función mostrarArbol
 }
 
-//Método buscar un elemento en el árbol
-char Caezar::buscar(int indice) {
+//Método para cifrar un caracter
+char Caezar::cifrar(int indice) {
 	return busqueda(arbol, indice);//Llamamos a la función busqueda
 }

@@ -242,7 +242,7 @@ void CAtbash() {
 	for (int i = 0; i <strlen(texto); i++) {//para recorrer el arreglo mientras no haya un caracter nulo \n
 		caracter = texto[i];//guardo el caracter en una variable
 		entero=int(caracter);//convierto el caracter a su valor en la tabla ASCII
-		textoA[i] = atbash.buscar(entero);//busco el caracter en el árbol
+		textoA[i] = atbash.cifrar(entero);//busco el caracter en el árbol
 	}
 	CCaezar();
 }
@@ -252,10 +252,10 @@ void CCaezar() {
 	char caracter = NULL;
 	int entero = NULL;
 	cout<<"imprimiendo el resultado de Caezar"<<endl;
-	for (int i = 0; i < strlen(textoA); i++) {
-		caracter = textoA[i];
-		entero=int(caracter);
-		textoC[i] = caezar.buscar(entero);
+	for (int i = 0; i < strlen(textoA); i++) {//para recorrer el arreglo mientras no haya un caracter nulo \n
+		caracter = textoA[i];//guardo el caracter en una variable
+		entero=int(caracter);//convierto el caracter a su valor en la tabla ASCII
+		textoC[i] = caezar.cifrar(entero);//busco el caracter en el árbol
 	}
 	CA1Z26();
 }
@@ -268,7 +268,7 @@ void CA1Z26() {
 	for (int i = 0; i < strlen(textoC); i++) {
 		caracter = textoC[i];
 		entero = int(caracter);
-		textoAZ[i] = a1z26.buscar(entero);
+		textoAZ[i] = a1z26.cifrar(entero);
 	}
 }
 

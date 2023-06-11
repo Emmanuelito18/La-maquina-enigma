@@ -26,5 +26,5 @@ public://métodos
 	~Caezar();//Destructor
 	void ingresar(char, int, char);
 	void ver();
-	char buscar(int);
+	char cifrar(int);
 };

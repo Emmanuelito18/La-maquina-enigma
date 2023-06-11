@@ -13,7 +13,7 @@
       </Struct>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABAgAAAACBgAAAABAIAAAAAAEAABAAASAA=</HashCode>
+      <HashCode>AAAAAAAAAABAgAAAACBgAAAABAAAACAAAEAABAAASAA=</HashCode>
       <FileName>Atbash.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -30,8 +30,25 @@
       </Struct>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAACAAACAAEAAAAAACAggAAABAIAAAAAAAAAAAAACAA=</HashCode>
+      <HashCode>AAAAAAAAAAFAAAAAACBgAAAABAAAACAAAEAABAAACAA=</HashCode>
       <FileName>Caezar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="A1Z26">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="A1Z26::nodoArbolAZ">
+        <TypeIdentifier>
+          <NewMemberFileName>A1Z26.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABBgAAAACBgAAAABAAAACAAAEAABAAACAA=</HashCode>
+      <FileName>A1Z26.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

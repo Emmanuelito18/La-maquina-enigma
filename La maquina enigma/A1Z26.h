@@ -28,6 +28,6 @@ public://métodos
 	~A1Z26();//Destructor
 	void ingresar(char, int, string);
 	void ver();
-	string buscar(int);
+	string cifrar(int);
 };
 

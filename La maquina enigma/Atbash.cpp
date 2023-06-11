@@ -104,8 +104,8 @@ void Atbash::ver() {
 	mostrarArbol(arbol, contador);//Llamamos a la función mostrarArbol
 }
 
-//Método buscar un elemento en el árbol
-char Atbash::buscar(int indice) {
+//Método para cifrar un caracter
+char Atbash::cifrar(int indice) {
 	return busqueda(arbol, indice);//Llamamos a la función busqueda
 }
 

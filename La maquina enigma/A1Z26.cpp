@@ -105,7 +105,7 @@ void A1Z26::ver() {
 	mostrarArbol(arbol, contador);//Llamamos a la función mostrarArbol
 }
 
-//Método buscar un elemento en el árbol
-string A1Z26::buscar(int indice) {
+//Método para cifrar un caracter
+string A1Z26::cifrar(int indice) {
 	return busqueda(arbol, indice);//Llamamos a la función busqueda
 }
