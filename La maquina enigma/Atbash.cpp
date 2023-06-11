@@ -54,12 +54,13 @@ void Atbash::mostrarArbol(Atbash::nodoArbolA* arbol, int cont) {
 }
 
 //Función para buscar un nodo en el árbol
-bool Atbash::busqueda(Atbash::nodoArbolA* arbol, int indice) {
+char Atbash::busqueda(Atbash::nodoArbolA* arbol, int indice) {
 	if (arbol == NULL) {//si el árbol está vacío
-			return false;//No haces nada
+			//No haces nada
 	}
 	else if (arbol->indice == indice) {//Si el nodo es igual al elemento
-		return true;
+		cout<<"Se ha encontrado el elemento: "<<arbol->letra<<" : "<<arbol->indice<<" : "<<arbol->salida<<endl;//Imprimimos el nodo
+		return arbol->salida;//retornamos el nodo
 	}
 	else if(indice < arbol->indice) {//Si el elemento es menor al nodo
 			return busqueda(arbol->izquierdo, indice);//Buscamos en el subárbol izquierdo
@@ -81,6 +82,7 @@ void Atbash::preOrden(Atbash::nodoArbolA* arbol) {
 		}
 }
 
+//Métodos
 //Constructor
 Atbash::Atbash() {
 	arbol = NULL;
@@ -103,14 +105,8 @@ void Atbash::ver() {
 }
 
 //Método buscar un elemento en el árbol
-void Atbash::buscar(int indice) {
-
-	if (busqueda(arbol, indice) == true) {
-		cout << "El elemento " << indice << " ha sido encontrado en el arbol" << endl;
-	}
-	else {
-		cout << "El elemento " << indice << " no ha sido encontrado en el arbol" << endl;
-	}
+char Atbash::buscar(int indice) {
+	return busqueda(arbol, indice);//Llamamos a la función busqueda
 }
 
 /*

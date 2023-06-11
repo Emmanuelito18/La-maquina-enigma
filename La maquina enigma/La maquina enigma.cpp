@@ -39,7 +39,7 @@ void documentoTexto(void);
 //Cifrados
 /*En estás funciones se realizan cada uno de los cifrados por independiente*/
 void CAtbash();
-void CCaezar(char textoA[], int);
+void CCaezar();
 //llenado de árboles cifrados
 void llenadoAtbash(char abecedario[], int, int espacio[], int,char abecedarioA[],int);
 void llenadoCaezar(char abecedario[], int, int espacio[], int,char abecedarioC[],int);
@@ -48,13 +48,13 @@ void Resultado(void);
 
 //declaración de variables globales
 const int capacidad = 1000;
-char texto[capacidad]={'t','r','o','z','o'}, textoA[capacidad], textoC[capacidad];
+char texto[capacidad]={'t','r','o','z','o',' ','h','o','l','a'}, textoA[capacidad], textoC[capacidad];
 string nombre;//variable para el uso del archivo .txt 
 
 const int TAM = 95;
 char abecedario[TAM] = { '/','O','7','<','X','"','i','3','B','>','~','F','Q','a','P','Y','6','%','e',' ','u','I','c','V','{',';','L','t','n','b','5','|','H','[','p','E','A','D','`','U','&',')','\\','g','v','N','o','f','R','M','z','=','W','y','J','$','}','#','(','8','9','_','+','Z','h','0',':','^',',','2','-','1','w','S',']','G','?','T','r','x','*','k','4','d','C','@','m','q','.','j','\'','s','l','K','!' };
  
-char abecedarioA[TAM] = { '/','L','7','<','X','"','r','3','Y','>','~','U','J','z','K','B','6','%','v',' ','f','R','x','E','{',';','O','G','m','y','5','|','S','[','k','V','Z','W','`','F','&',')','\\','t','e','M','l','u','i','N','a','=','D','b','Q','$','}','#',')','8','9','_','+','A','s','0',':','^','2','-','1','d','H',']','T','?','G','i','c','*','p','4','w','x','@','n','j','.','q','\'','h','o','p','!' };
+char abecedarioA[TAM] = { '/','L','7','<','C','"','r','3','Y','>','~','U','J','z','K','B','6','%','v',' ','f','R','x','E','{',';','O','g','m','y','5','|','S','[','k','V','Z','W','`','F','&',')','\\','t','e','M','l','u','I','N','a','=','D','b','Q','$','}','#',')','8','9','_','+','A','s','0',':','^',',','2','-','1','d','H',']','T','?','G','i','c','*','p','4','w','X','@','n','j','.','q','\'','h','o','P','!' };
 
 char abecedarioC[TAM] = { '/','L','7','<','U','"','f','3','Y','>','~','C','N','x','M','V','6','%','b',' ','r','F','z','S','{',';','i','q','k','y','5','|','E','[','m','B','X','A','`','R','&',')','\\','d','s','K','l','c','O','J','w','=','T','v','G','$','}','#','(','8','9','_','+','W','e','0',':','^',',','2','-','1','t','P',']','D','?','Q','o','u','*','h','4','a','Z','@','j','n','.','g','\'','p','i','H','!'};
 
@@ -227,23 +227,25 @@ void documentoTexto() {
 
 // Cifrados
 void CAtbash() {
-	char caracter = NULL,salida;
+	char caracter = NULL;
 	int entero = NULL;
+	cout<<"imprimiendo el resultado de Atbash"<<endl;
 	for (int i = 0; i <strlen(texto); i++) {//para recorrer el arreglo mientras no haya un caracter nulo \n
 		caracter = texto[i];//guardo el caracter en una variable
 		entero=int(caracter);//convierto el caracter a su valor en la tabla ASCII
-		/*textoA[i] = */ primero.buscar(entero);//busco el caracter en el árbol
+		textoA[i] = primero.buscar(entero);//busco el caracter en el árbol
 	}
-	CCaezar(textoA,capacidad);
+	CCaezar();
 }
 
-void CCaezar(char textoA[],int capacidad) {
-	char caracter = NULL,salida;
+void CCaezar() {
+	char caracter = NULL;
 	int entero = NULL;
+	cout<<"imprimiendo el resultado de Caezar"<<endl;
 	for (int i = 0; i < strlen(textoA); i++) {
 		caracter = textoA[i];
 		entero=int(caracter);
-		/*textoC[i] = */ segundo.encontrar(entero);
+		textoC[i] = segundo.buscar(entero);
 	}
 }
 
@@ -259,20 +261,20 @@ void llenadoAtbash(char abecedario[],int tam_letra,int espacio[],int tam_espacio
 		salida = abecedarioA[i];
 		primero.ingresar(caracter, indice,salida);
 	}
-	primero.ver();
+	//primero.ver();
 }
 
 void llenadoCaezar(char abecedario[],int tam_letra, int espacio[],int tam_espacio,char abecedarioC[],int tam) {
 	char caracter = NULL;
 	int indice = NULL;
-	char aux = NULL;
+	char salida = NULL;
 	for (int i = 0; i < 95; i++) {
 		caracter = abecedario[i];
 		indice = espacio[i];
-		aux = abecedarioC[i];
-		segundo.ingresar(caracter, indice, aux);
-		//segundo.ver();
+		salida = abecedarioC[i];
+		segundo.ingresar(caracter, indice, salida);
 	}
+	//segundo.ver();
 }
 
 //salida

@@ -18,15 +18,14 @@ private://atributos
 	nodoArbolA* crearNodo(char, int, char,nodoArbolA*);//crea un nodo del árbol
 	void insertarNodo(nodoArbolA*&, char, int, char,nodoArbolA*);//inserta un nodo en el árbol
 	void mostrarArbol(nodoArbolA*, int);//muestra el árbol
-	bool busqueda(nodoArbolA*,int);//busca un nodo en el árbol
+	char busqueda(nodoArbolA*,int);//busca un nodo en el árbol
 
 	//recorridos del árbol
 	void preOrden(nodoArbolA*);
-
 public://métodos
 	Atbash();//Constructor
 	~Atbash();//Destructor
 	void ingresar(char, int, char);
 	void ver();
-	void buscar(int);
+	char buscar(int);
 };
