@@ -52,7 +52,7 @@ void Resultado(void);
 
 //declaración de variables globales
 const int capacidad = 1000;
-char texto[capacidad]={'t','r','o','z','o',' ','h','o','l','a'}, textoA[capacidad], textoC[capacidad];
+char texto[capacidad], textoA[capacidad], textoC[capacidad];
 string textoAZ[capacidad];
 string nombre;//variable para el uso del archivo .txt 
 
@@ -76,17 +76,6 @@ int main() {
 	llenadoAtbash(abecedario, TAM, espacio, TAM, abecedarioA, TAM);
 	llenadoCaezar(abecedario, TAM, espacio, TAM, abecedarioC, TAM);
 	llenadoAZ(abecedario,TAM, espacio, TAM, abecedarioAZ, TAM);
-
-	/*
-	Código temporal utilizado para depuración de búsqueda de cracteres en el árbol
-	char trozo,salida,salida2;
-	cout << "Ingrese un caracter a buscar: ";
-	cin >> trozo;
-	salida = primero.encontrar(trozo);
-	cout << endl << endl << "La salida es: " << salida << endl;
-	salida2 = segundo.encontrar(trozo);
-	cout << endl << endl << "La salida es: " << salida2 << endl;
-	*/
 	
 	//código temporal para probar el programa
 	manual();
@@ -215,10 +204,11 @@ void Menu() {
 
 //Inserción de texto a cifrar
 void manual() {
-	/*cout << "Ingrese el texto a cifrar: " << endl;
+	cout<<"Atención, el programa solo acepta caracteres disponibles en el teclado en INGLÉS"<<endl;
+	cout << "Ingrese el texto a cifrar: " << endl;
 	cin.getline(texto, 1000, '\n');//parte el texto ingresado por letras*/
 	/*
-	for (int i = 0; i < strlen(texto); i++) {//para saber que hay en cada espacio del arreglo
+	for (int i = 0; i < strlen(texto); i++) {//para saber que hay en cada espacio del arreglo,solo para DEPURACIÓN
 		cout << texto[i] << endl;
 	}*/
 	CAtbash();
