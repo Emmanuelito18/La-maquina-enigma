@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="A1Z26.cpp" />
     <ClCompile Include="Atbash.cpp" />
     <ClCompile Include="Caezar.cpp" />
     <ClCompile Include="La maquina enigma.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="A1Z26.h" />
     <ClInclude Include="Atbash.h" />
     <ClInclude Include="Caezar.h" />
   </ItemGroup>

@@ -14,21 +14,23 @@
 #include <locale.h>//para cambiar el idioma de la consola
 #include <iomanip>//para poder manipular el texto mostrado en consola
 #include <fstream>//para leer y escribir archivos, aún no implementado
-#include <string.h>//para poder partir el texto introducido en caracteres
+#include <string>//para poder partir el texto introducido en caracteres
 #include <cctype>
 #include <thread>//para la programación por hilos, aún no implementado
 
 //inclución de clases personales
 #include "Atbash.h"
 #include "Caezar.h"
+#include "A1Z26.h"
 
 #define color SetConsoleTextAttribute
 
 using namespace std;
 
 //Creación de  objetos de clases
-Atbash primero;
-Caezar segundo;
+Atbash atbash;
+Caezar caezar;
+A1Z26 a1z26;
 
 //prototipado de funciones
 void Portada(void);
@@ -40,15 +42,18 @@ void documentoTexto(void);
 /*En estás funciones se realizan cada uno de los cifrados por independiente*/
 void CAtbash();
 void CCaezar();
+void CA1Z26();
 //llenado de árboles cifrados
 void llenadoAtbash(char abecedario[], int, int espacio[], int,char abecedarioA[],int);
 void llenadoCaezar(char abecedario[], int, int espacio[], int,char abecedarioC[],int);
+void llenadoAZ(char abecedario[], int, int espacio[], int,string abecedarioAZ[],int);
 //salida
 void Resultado(void);
 
 //declaración de variables globales
 const int capacidad = 1000;
 char texto[capacidad]={'t','r','o','z','o',' ','h','o','l','a'}, textoA[capacidad], textoC[capacidad];
+string textoAZ[capacidad];
 string nombre;//variable para el uso del archivo .txt 
 
 const int TAM = 95;
@@ -57,6 +62,8 @@ char abecedario[TAM] = { '/','O','7','<','X','"','i','3','B','>','~','F','Q','a'
 char abecedarioA[TAM] = { '/','L','7','<','C','"','r','3','Y','>','~','U','J','z','K','B','6','%','v',' ','f','R','x','E','{',';','O','g','m','y','5','|','S','[','k','V','Z','W','`','F','&',')','\\','t','e','M','l','u','I','N','a','=','D','b','Q','$','}','#',')','8','9','_','+','A','s','0',':','^',',','2','-','1','d','H',']','T','?','G','i','c','*','p','4','w','X','@','n','j','.','q','\'','h','o','P','!' };
 
 char abecedarioC[TAM] = { '/','L','7','<','U','"','f','3','Y','>','~','C','N','x','M','V','6','%','b',' ','r','F','z','S','{',';','i','q','k','y','5','|','E','[','m','B','X','A','`','R','&',')','\\','d','s','K','l','c','O','J','w','=','T','v','G','$','}','#','(','8','9','_','+','W','e','0',':','^',',','2','-','1','t','P',']','D','?','Q','o','u','*','h','4','a','Z','@','j','n','.','g','\'','p','i','H','!'};
+
+string abecedarioAZ[TAM] = { "41","15","49","54","24","28","67","45","2","56","94","6","17","59","16","83","48","37","63"," ","79","9","61","22","91","53","12","78","72","60","47","92","8","85","74","5","1","4","90","21","32","35","86","65","79","14","73","64","18","13","84","55","23","68","10","30","93","29","34","50","51","89","37","26","66","42","52","88","38","44","39","43","81","19","87","7","57","20","76","82","36","69","46","62","3","58","71","75","40","77","70","11","27" };
 
 int espacio[TAM]={47,79,55,60,88,34,105,51,66,62,126,70,81,97,80,89,54,37,101,32,117,73,99,86,123,59,76,116,110,98,53,124,72,91,112,69,65,68,96,85,38,41,92,103,118,78,111,102,82,77,122,61,87,121,74,36,125,35,40,56,57,95,43,90,104,48,58,94,44,50,45,49,119,83,93,71,63,84,114,120,42,107,52,100,67,64,109,113,46,106,39,115,108,75,33};
 
@@ -68,6 +75,7 @@ int main() {
 	//Cuerpo del programa
 	llenadoAtbash(abecedario, TAM, espacio, TAM, abecedarioA, TAM);
 	llenadoCaezar(abecedario, TAM, espacio, TAM, abecedarioC, TAM);
+	llenadoAZ(abecedario,TAM, espacio, TAM, abecedarioAZ, TAM);
 
 	/*
 	Código temporal utilizado para depuración de búsqueda de cracteres en el árbol
@@ -226,6 +234,7 @@ void documentoTexto() {
 }
 
 // Cifrados
+//Función para cifrar con el método Atbash
 void CAtbash() {
 	char caracter = NULL;
 	int entero = NULL;
@@ -233,11 +242,12 @@ void CAtbash() {
 	for (int i = 0; i <strlen(texto); i++) {//para recorrer el arreglo mientras no haya un caracter nulo \n
 		caracter = texto[i];//guardo el caracter en una variable
 		entero=int(caracter);//convierto el caracter a su valor en la tabla ASCII
-		textoA[i] = primero.buscar(entero);//busco el caracter en el árbol
+		textoA[i] = atbash.buscar(entero);//busco el caracter en el árbol
 	}
 	CCaezar();
 }
 
+//Función para cifrar con el método Caezar
 void CCaezar() {
 	char caracter = NULL;
 	int entero = NULL;
@@ -245,7 +255,20 @@ void CCaezar() {
 	for (int i = 0; i < strlen(textoA); i++) {
 		caracter = textoA[i];
 		entero=int(caracter);
-		textoC[i] = segundo.buscar(entero);
+		textoC[i] = caezar.buscar(entero);
+	}
+	CA1Z26();
+}
+
+//Función para cifrar con el método A1Z26
+void CA1Z26() {
+	char caracter = NULL;
+	int entero = NULL;
+	cout << "imprimiendo el resultado de A1Z26" << endl;
+	for (int i = 0; i < strlen(textoC); i++) {
+		caracter = textoC[i];
+		entero = int(caracter);
+		textoAZ[i] = a1z26.buscar(entero);
 	}
 }
 
@@ -259,9 +282,10 @@ void llenadoAtbash(char abecedario[],int tam_letra,int espacio[],int tam_espacio
 		caracter = abecedario[i];
 		indice = espacio[i];
 		salida = abecedarioA[i];
-		primero.ingresar(caracter, indice,salida);
+		atbash.ingresar(caracter, indice,salida);
 	}
-	//primero.ver();
+	/*cout << "Mostrando árbol de Atbash" << endl;
+	atbash.ver();*/
 }
 
 void llenadoCaezar(char abecedario[],int tam_letra, int espacio[],int tam_espacio,char abecedarioC[],int tam) {
@@ -272,9 +296,24 @@ void llenadoCaezar(char abecedario[],int tam_letra, int espacio[],int tam_espaci
 		caracter = abecedario[i];
 		indice = espacio[i];
 		salida = abecedarioC[i];
-		segundo.ingresar(caracter, indice, salida);
+		caezar.ingresar(caracter, indice, salida);
 	}
-	//segundo.ver();
+	/*cout << "Mostrando árbol de Caezar" << endl;
+	caezar.ver();*/
+}
+
+void llenadoAZ(char abecedario[], int tam_letra, int espacio[], int tam_espacio, string abecedarioAZ[], int tam) {
+	char caracter = NULL;
+	int indice = NULL;
+	string salida;
+	for (int i = 0; i < 95; i++) {
+		caracter = abecedario[i];
+		indice = espacio[i];
+		salida = abecedarioAZ[i];
+		a1z26.ingresar(caracter, indice, salida);
+	}
+	/*cout << "Mostrando árbol de A1Z26" << endl;
+	a1z26.ver();*/
 }
 
 //salida
