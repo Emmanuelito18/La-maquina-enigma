@@ -422,8 +422,6 @@ void escrituraDocumento() {
 	}
 	archivoSalida << cifrado << endl;//escribo en el archivo
 }
-
-
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
 // Depurar programa: F5 o menú Depurar > Iniciar depuración
 
