@@ -60,7 +60,7 @@ string A1Z26::busqueda(A1Z26::nodoArbolAZ* arbol, int indice) {
 		//No haces nada
 	}
 	else if (arbol->indice == indice) {//Si el nodo es igual al elemento
-		cout << "Se ha encontrado el elemento: " << arbol->letra << " : " << arbol->indice << " : " << arbol->salida << endl;//Imprimimos el nodo
+		//cout << "Se ha encontrado el elemento: " << arbol->letra << " : " << arbol->indice << " : " << arbol->salida << endl;//Imprimimos el nodo
 		return arbol->salida;//retornamos el nodo
 	}
 	else if (indice < arbol->indice) {//Si el elemento es menor al nodo
@@ -68,6 +68,15 @@ string A1Z26::busqueda(A1Z26::nodoArbolAZ* arbol, int indice) {
 	}
 	else {//Si el elemento es mayor al nodo
 		return busqueda(arbol->derecho, indice);//Buscamos en el subárbol derecho
+	}
+}
+
+//Función para destruir el árbol
+void A1Z26::destruirArbol(nodoArbolAZ* nodo) {
+	if (nodo) {//Si el nodo existe
+		destruirArbol(nodo->izquierdo);//Recorremos subárbol izquierdo
+		destruirArbol(nodo->derecho);//Recorremos subárbol derecho
+		delete nodo;//Eliminamos el nodo
 	}
 }
 
@@ -91,7 +100,7 @@ A1Z26::A1Z26() {
 
 //Destructor
 A1Z26::~A1Z26() {
-
+	destruirArbol(arbol);//Llamamos a la función destruirArbol
 }
 
 //Método ingresar elementos al árbol

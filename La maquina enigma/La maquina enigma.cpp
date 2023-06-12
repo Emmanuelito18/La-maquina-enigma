@@ -40,14 +40,15 @@ void manual(void);
 void lecturaDocumento(void);
 //Cifrados
 /*En estás funciones se realizan cada uno de los cifrados por independiente*/
-void CAtbash();
-void CCaezar();
-void CA1Z26();
+void CAtbash(void);
+void CCaezar(void);
+void CA1Z26(void);
 //llenado de árboles cifrados
 void llenadoAtbash(char abecedario[], int, int espacio[], int,char abecedarioA[],int);
 void llenadoCaezar(char abecedario[], int, int espacio[], int,char abecedarioC[],int);
 void llenadoAZ(char abecedario[], int, int espacio[], int,string abecedarioAZ[],int);
 //salida
+void nombradoArchivo(void);
 void escrituraDocumento(void);
 
 //declaración de variables globales
@@ -67,6 +68,9 @@ string abecedarioAZ[TAM] = { " 41"," 15"," 49"," 54"," 24"," 28"," 67"," 45"," 2
 
 int espacio[TAM]={47,79,55,60,88,34,105,51,66,62,126,70,81,97,80,89,54,37,101,32,117,73,99,86,123,59,76,116,110,98,53,124,72,91,112,69,65,68,96,85,38,41,92,103,118,78,111,102,82,77,122,61,87,121,74,36,125,35,40,56,57,95,43,90,104,48,58,94,44,50,45,49,119,83,93,71,63,84,114,120,42,107,52,100,67,64,109,113,46,106,39,115,108,75,33};
 
+ofstream archivoSalida;//creo un objeto de la clase ofstream
+bool llamada = false;//para saber si se ha llamado a la función para nombrar el archivo
+string direccion, nombreArchivo;//para guardar la dirección y el nombre del archivo
 int main() {
 	//Cuerpo del programa
 	
@@ -85,10 +89,10 @@ int main() {
 	hilollenadoAZ.join();
 	
 	//código temporal para probar el programa
-	//manual();
-	lecturaDocumento();
-	//Menu();
+	Menu();
 	//parte final del código
+
+	archivoSalida.close();//cierro el archivo
 	setlocale(LC_ALL, "spanish");//Cambio el idioma de la consola a español
 	cout << "Esta es la parte final del programa" << endl;
 	cout << "Que la fuerza de velocidad te acompañe" << endl << endl;
@@ -234,6 +238,7 @@ void manual() {
 	for (int i = 0; i < strlen(texto); i++) {//para saber que hay en cada espacio del arreglo,solo para DEPURACIÓN
 		cout << texto[i] << endl;
 	}*/
+	nombradoArchivo();//llamo a la función para nombrar el archivo
 	CAtbash();
 }
 
@@ -269,6 +274,7 @@ void lecturaDocumento() {
 	sleep(5000);
 	clrscr();
 #endif
+	nombradoArchivo();//llamo a la función para nombrar el archivo
 
 	while (archivo.getline(texto, capacidad)) {
 		//cout << texto << endl;
@@ -284,8 +290,6 @@ void lecturaDocumento() {
 	else if (archivo.fail()) {
 		cout<<"Error al leer el archivo"<<endl;
 	}
-
-
 	archivo.close();//cierro el archivo
 }
 
@@ -294,7 +298,7 @@ void lecturaDocumento() {
 void CAtbash() {
 	char caracter = NULL;
 	int entero = NULL;
-	cout<<"imprimiendo el resultado de Atbash"<<endl;
+	//cout<<"imprimiendo el resultado de Atbash"<<endl;
 	for (int i = 0; i <strlen(texto); i++) {//para recorrer el arreglo mientras no haya un caracter nulo \n
 		caracter = texto[i];//guardo el caracter en una variable
 		entero=int(caracter);//convierto el caracter a su valor en la tabla ASCII
@@ -307,7 +311,7 @@ void CAtbash() {
 void CCaezar() {
 	char caracter = NULL;
 	int entero = NULL;
-	cout<<"imprimiendo el resultado de Caezar"<<endl;
+	//cout<<"imprimiendo el resultado de Caezar"<<endl;
 	for (int i = 0; i < strlen(textoA); i++) {//para recorrer el arreglo mientras no haya un caracter nulo \n
 		caracter = textoA[i];//guardo el caracter en una variable
 		entero=int(caracter);//convierto el caracter a su valor en la tabla ASCII
@@ -320,7 +324,7 @@ void CCaezar() {
 void CA1Z26() {
 	char caracter = NULL;
 	int entero = NULL;
-	cout << "imprimiendo el resultado de A1Z26" << endl;
+	//cout << "imprimiendo el resultado de A1Z26" << endl;
 	for (int i = 0; i < strlen(textoC); i++) {
 		caracter = textoC[i];
 		entero = int(caracter);
@@ -374,14 +378,10 @@ void llenadoAZ(char abecedario[], int tam_letra, int espacio[], int tam_espacio,
 }
 
 //salida
-void escrituraDocumento() {
+void nombradoArchivo() {
 	HANDLE consola = GetStdHandle(STD_OUTPUT_HANDLE);
-	ofstream archivo;//creo un objeto de la clase ofstream
-	string nombreArchivo, cifrado;//variable para guardar el nombre del archivo
-	char respuesta = NULL;
-
 	//obtengo la dirección del escritorio
-	string direccion;
+	char respuesta = '\0';
 	char* carpetaUsuario = nullptr;
 	size_t tamanoCarpetaUsuario;
 	errno_t error = _dupenv_s(&carpetaUsuario, &tamanoCarpetaUsuario, "USERPROFILE");
@@ -395,30 +395,33 @@ void escrituraDocumento() {
 		exit(1);
 	}
 
-	cout<<"Quiere nombrar el archivo de salida? (s/n)"<<endl;
+	cout << "Quiere nombrar el archivo de salida? (s/n)" << endl;
 	cin >> respuesta;
-	if (respuesta == 's'||respuesta=='S') {
+	if (respuesta == 's' || respuesta == 'S') {
 		color(consola, 14);//color amarillo
 		cout << "Ingrese el nombre del archivo SIN la extencion .txt" << endl;
-		cout<<"El archivo se guardará en el escritorio"<<endl;
+		cout << "El archivo se guardará en el escritorio" << endl;
 		color(consola, 7);//color blanco
-		cin >> nombreArchivo;
+		cin >> nombreArchivo;//guardo el nombre del archivo
 		nombreArchivo = nombreArchivo + ".txt";//concateno el nombre del archivo con la extencion .txt
-		archivo.open(nombreArchivo.c_str(), ios::out);//abro el archivo en modo escritura
+		direccion = direccion + nombreArchivo;//concateno la direccion con el nombre del archivo
 	}
 	else {
-		direccion=direccion+"Cifrado.txt";//concateno la direccion con el nombre del archivo
-		archivo.open(direccion.c_str(), ios::out);//abro el archivo en modo escritura
+		direccion = direccion + "Cifrado.txt";//concateno la direccion con el nombre del archivo
 	}
-
-	if (archivo.fail()) {//si no se pudo abrir el archivo
+	archivoSalida.open(direccion.c_str(), ios::out);//abro el archivo en modo escritura
+	if (archivoSalida.fail()) {//si no se pudo abrir el archivo
 		cout << "No se pudo abrir el archivo" << endl;
 		exit(1);//salgo del programa
 	}
 	else {
-		cout << "Archivo abierto correctamente" << endl;
+		cout << "Archivo creado correctamente" << endl;
 
 	}
+}
+void escrituraDocumento() {
+	HANDLE consola = GetStdHandle(STD_OUTPUT_HANDLE);
+	string cifrado;//variable para guardar el nombre del archivo
 
 	//recorro el arreglo de cifrado concatenando el contenido
 	for (int i = 0; i < capacidad; i++) {
@@ -426,11 +429,11 @@ void escrituraDocumento() {
 			break;//salgo del ciclo
 
 		}
-		cifrado =cifrado+ textoAZ[i];//concateno el contenido del arreglo en una variable
+		cifrado = cifrado + textoAZ[i];//concateno el contenido del arreglo en una variable
 	}
-	archivo << cifrado << endl;//escribo en el archivo
-	archivo.close();//cierro el archivo
+	archivoSalida << cifrado << endl;//escribo en el archivo
 }
+
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
 // Depurar programa: F5 o menú Depurar > Iniciar depuración

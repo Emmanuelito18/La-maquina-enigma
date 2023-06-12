@@ -20,6 +20,7 @@ private://atributos
 	void insertarNodo(nodoArbolAZ*&, char, int, string, nodoArbolAZ*);//inserta un nodo en el árbol
 	void mostrarArbol(nodoArbolAZ*, int);//muestra el árbol
 	string busqueda(nodoArbolAZ*, int);//busca un nodo en el árbol
+	void destruirArbol(nodoArbolAZ*);//destruye el árbol
 
 	//recorridos del árbol
 	void preOrden(nodoArbolAZ*);
