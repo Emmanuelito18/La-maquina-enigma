@@ -180,27 +180,36 @@ void Portada() {
 
 void Menu() {
 	int opc = 0;
-	cout << "\tMenu" << endl;
-	cout << "1. Cifrar un texto ingresado manualmente" << endl;
-	cout << "2. Cifrar un documento de texto" << endl;
-	cout << "3. Salir" << endl;
-	cout << "Ingrese el numero de su opcion: ";
-	cin >> opc;
-	switch (opc) {
-	case 1:
-		cin.ignore();//libero el búfer del teclado
-		manual();
-		break;
-	case 2:
-		cin.ignore();
-		lecturaDocumento();
-		break;
-	case 3:
-		cout << "mamahuevo" << endl;
-		break;
-	default:
-		cout << "Error, opcion invalida por favor vuelva a intentar" << endl;
+	do {
+		cout << "\tMenu" << endl;
+		cout << "1. Cifrar un texto ingresado manualmente" << endl;
+		cout << "2. Cifrar un documento de texto" << endl;
+		cout << "3. Salir" << endl;
+		cout << "Ingrese el numero de su opcion: ";
+		cin >> opc;
+		switch (opc) {
+		case 1:
+			cin.ignore();//libero el búfer del teclado
+			manual();
+			break;
+		case 2:
+			cin.ignore();
+			lecturaDocumento();
+			break;
+		case 3:
+			break;
+		default:
+			cout << "Error, opcion invalida por favor vuelva a intentar" << endl;
+		}
+#ifdef _WIN32
+		Sleep(2000);
+		system("cls");
+#else
+		sleep(2000);
+		clrscr();
+#endif
 	}
+	while (opc != 3);
 }
 
 //Inserción de texto a cifrar
