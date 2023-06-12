@@ -37,7 +37,7 @@ void Portada(void);
 void Menu(void);
 //Inserción
 void manual(void);
-void documentoTexto(void);
+void lecturaDocumento(void);
 //Cifrados
 /*En estás funciones se realizan cada uno de los cifrados por independiente*/
 void CAtbash();
@@ -48,13 +48,12 @@ void llenadoAtbash(char abecedario[], int, int espacio[], int,char abecedarioA[]
 void llenadoCaezar(char abecedario[], int, int espacio[], int,char abecedarioC[],int);
 void llenadoAZ(char abecedario[], int, int espacio[], int,string abecedarioAZ[],int);
 //salida
-void Resultado(void);
+void escrituraDocumento(void);
 
 //declaración de variables globales
 const int capacidad = 1000;
-char texto[capacidad], textoA[capacidad], textoC[capacidad];
+char texto[capacidad] = { 't','r','o','z','o',' ','h','o','l','a' }, textoA[capacidad], textoC[capacidad];
 string textoAZ[capacidad];
-string nombre;//variable para el uso del archivo .txt 
 
 const int TAM = 95;
 char abecedario[TAM] = { '/','O','7','<','X','"','i','3','B','>','~','F','Q','a','P','Y','6','%','e',' ','u','I','c','V','{',';','L','t','n','b','5','|','H','[','p','E','A','D','`','U','&',')','\\','g','v','N','o','f','R','M','z','=','W','y','J','$','}','#','(','8','9','_','+','Z','h','0',':','^',',','2','-','1','w','S',']','G','?','T','r','x','*','k','4','d','C','@','m','q','.','j','\'','s','l','K','!' };
@@ -63,7 +62,8 @@ char abecedarioA[TAM] = { '/','L','7','<','C','"','r','3','Y','>','~','U','J','z
 
 char abecedarioC[TAM] = { '/','L','7','<','U','"','f','3','Y','>','~','C','N','x','M','V','6','%','b',' ','r','F','z','S','{',';','i','q','k','y','5','|','E','[','m','B','X','A','`','R','&',')','\\','d','s','K','l','c','O','J','w','=','T','v','G','$','}','#','(','8','9','_','+','W','e','0',':','^',',','2','-','1','t','P',']','D','?','Q','o','u','*','h','4','a','Z','@','j','n','.','g','\'','p','i','H','!'};
 
-string abecedarioAZ[TAM] = { "41","15","49","54","24","28","67","45","2","56","94","6","17","59","16","83","48","37","63"," ","79","9","61","22","91","53","12","78","72","60","47","92","8","85","74","5","1","4","90","21","32","35","86","65","79","14","73","64","18","13","84","55","23","68","10","30","93","29","34","50","51","89","37","26","66","42","52","88","38","44","39","43","81","19","87","7","57","20","76","82","36","69","46","62","3","58","71","75","40","77","70","11","27" };
+string abecedarioAZ[TAM] = { " 41"," 15"," 49"," 54"," 24"," 28"," 67"," 45"," 2"," 56"," 94"," 6"," 17"," 59"," 16"," 83"," 48"," 37"," 63"," "," 79"," 9"," 61"," 22"," 91"," 53"," 12"," 78"," 72"," 60"," 47"," 92"," 8"," 85"," 74"," 5"," 1"," 4"," 90"," 21"," 32"," 35"," 86"," 65"," 79"," 14"," 73"," 64"," 18"," 13"," 84"," 55"," 23"," 68"," 10"," 30"," 93"," 29"," 34"," 50"," 51"," 89"," 37"," 26",
+" 66"," 42"," 52"," 88"," 38"," 44"," 39"," 43"," 81"," 19"," 87"," 7"," 57"," 20"," 76"," 82"," 36"," 69"," 46"," 62"," 3"," 58"," 71"," 75"," 40"," 77"," 70"," 11"," 27" };
 
 int espacio[TAM]={47,79,55,60,88,34,105,51,66,62,126,70,81,97,80,89,54,37,101,32,117,73,99,86,123,59,76,116,110,98,53,124,72,91,112,69,65,68,96,85,38,41,92,103,118,78,111,102,82,77,122,61,87,121,74,36,125,35,40,56,57,95,43,90,104,48,58,94,44,50,45,49,119,83,93,71,63,84,114,120,42,107,52,100,67,64,109,113,46,106,39,115,108,75,33};
 
@@ -79,6 +79,7 @@ int main() {
 	
 	//código temporal para probar el programa
 	manual();
+	//lecturaDocumento();
 	//Menu();
 	//parte final del código
 	cout << "Esta es la parte final del programa" << endl;
@@ -192,7 +193,7 @@ void Menu() {
 		break;
 	case 2:
 		cin.ignore();
-		documentoTexto();
+		lecturaDocumento();
 		break;
 	case 3:
 		cout << "mamahuevo" << endl;
@@ -204,9 +205,13 @@ void Menu() {
 
 //Inserción de texto a cifrar
 void manual() {
+	HANDLE consola = GetStdHandle(STD_OUTPUT_HANDLE);
+	color(consola, 14);//color amarillo
 	cout<<"Atención, el programa solo acepta caracteres disponibles en el teclado en INGLÉS"<<endl;
+	color(consola, 7);//color blanco
 	cout << "Ingrese el texto a cifrar: " << endl;
-	cin.getline(texto, 1000, '\n');//parte el texto ingresado por letras*/
+	cin.getline(texto, 1000, '\n');//parte el texto ingresado por letras
+
 	/*
 	for (int i = 0; i < strlen(texto); i++) {//para saber que hay en cada espacio del arreglo,solo para DEPURACIÓN
 		cout << texto[i] << endl;
@@ -214,13 +219,45 @@ void manual() {
 	CAtbash();
 }
 
-void documentoTexto() {
-
-	cout << "Atención debe ser un archivo .txt" << endl;
-	cout << "Ingrese el nombre del archivo de texto a cifrar sin la extención del archivo: ";
+void lecturaDocumento() {
+	HANDLE consola = GetStdHandle(STD_OUTPUT_HANDLE);
+	ifstream archivo;
+	string nombre;//variable para el uso del archivo .txt 
+	color(consola, 14);//color amarillo
+	cout << "Atención debe ser un archivo .txt, para que sea más fácil tenga el archivo de texto en el ESCRITORIO" << endl;
+	color(consola, 7);//color blanco
+	cout << "Ingrese la dirección completa del archivo de texto a cifrar sin la extención del archivo: ";
 	cin >> nombre;
 	nombre = nombre + ".txt";//concateno el nombre del archivo con la terminación .txt
-	/*Falta hacer el código correspondiente para leer el archivo*/
+	
+	archivo.open(nombre.c_str(), ios::in);//abro el archivo en modo lectura
+
+	if (archivo.fail()) {//si no se pudo abrir el archivo
+		cout << "No se pudo abrir el archivo" << endl;
+		exit(1);
+	}
+	/*while (!archivo.eof()) {//mientras no sea el final del archivo
+		getline(archivo, texto);//guardo el texto en una variable
+		cout<<texto<<endl;
+	}*/
+
+	while (archivo.getline(texto, capacidad)) {
+		//cout << texto << endl;
+		CAtbash();
+		for (int i = 0; i < capacidad; i++) {
+			texto[i]= NULL;
+		}
+	}
+
+	if (archivo.eof()) {
+		cout << "Lectura del archivo completada" << endl;
+	}
+	else if (archivo.fail()) {
+		cout<<"Error al leer el archivo"<<endl;
+	}
+
+
+	archivo.close();//cierro el archivo
 }
 
 // Cifrados
@@ -260,6 +297,7 @@ void CA1Z26() {
 		entero = int(caracter);
 		textoAZ[i] = a1z26.cifrar(entero);
 	}
+	escrituraDocumento();
 }
 
 //lenado de árboles cifrados
@@ -307,8 +345,62 @@ void llenadoAZ(char abecedario[], int tam_letra, int espacio[], int tam_espacio,
 }
 
 //salida
-void Resultado() {
-	/*Aquí irá el código para guardar el resultado del cifrado en un archivo de texto*/
+void escrituraDocumento() {
+	HANDLE consola = GetStdHandle(STD_OUTPUT_HANDLE);
+	ofstream archivo;//creo un objeto de la clase ofstream
+	string nombreArchivo = NULL, cifrado = NULL;//variable para guardar el nombre del archivo
+	char respuesta = NULL;
+
+	//obtengo la dirección del escritorio
+	string direccion;
+	char* carpetaUsuario = nullptr;
+	size_t tamanoCarpetaUsuario;
+	errno_t error = _dupenv_s(&carpetaUsuario, &tamanoCarpetaUsuario, "USERPROFILE");
+	if (error == 0 && carpetaUsuario != nullptr) {
+		direccion = carpetaUsuario;
+		direccion += "\\Desktop\\";
+		free(carpetaUsuario); // Liberar la memoria asignada por _dupenv_s()
+	}
+	else {
+		cout << "Error al obtener la direccion del escritorio" << endl;
+		exit(1);
+	}
+
+	cout<<"Quiere nombrar el archivo de salida? (s/n)"<<endl;
+	cin >> respuesta;
+	if (respuesta == 's'||respuesta=='S') {
+		color(consola, 14);//color amarillo
+		cout << "Ingrese el nombre del archivo SIN la extencion .txt" << endl;
+		cout<<"El archivo se guardará en el escritorio"<<endl;
+		color(consola, 7);//color blanco
+		cin >> nombreArchivo;
+		nombreArchivo = nombreArchivo + ".txt";//concateno el nombre del archivo con la extencion .txt
+		archivo.open(nombreArchivo.c_str(), ios::out);//abro el archivo en modo escritura
+	}
+	else {
+		direccion=direccion+"Cifrado.txt";//concateno la direccion con el nombre del archivo
+		archivo.open(direccion.c_str(), ios::out);//abro el archivo en modo escritura
+	}
+
+	if (archivo.fail()) {//si no se pudo abrir el archivo
+		cout << "No se pudo abrir el archivo" << endl;
+		exit(1);//salgo del programa
+	}
+	else {
+		cout << "Archivo abierto correctamente" << endl;
+
+	}
+
+	//recorro el arreglo de cifrado concatenando el contenido
+	for (int i = 0; i < capacidad; i++) {
+		if (textoAZ[i].empty()) {//si el arreglo esta vacio
+			break;//salgo del ciclo
+
+		}
+		cifrado += textoAZ[i];//concateno el contenido del arreglo en una variable
+	}
+	archivo << cifrado << endl;//escribo en el archivo
+	archivo.close();//cierro el archivo
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
