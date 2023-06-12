@@ -68,20 +68,28 @@ string abecedarioAZ[TAM] = { " 41"," 15"," 49"," 54"," 24"," 28"," 67"," 45"," 2
 int espacio[TAM]={47,79,55,60,88,34,105,51,66,62,126,70,81,97,80,89,54,37,101,32,117,73,99,86,123,59,76,116,110,98,53,124,72,91,112,69,65,68,96,85,38,41,92,103,118,78,111,102,82,77,122,61,87,121,74,36,125,35,40,56,57,95,43,90,104,48,58,94,44,50,45,49,119,83,93,71,63,84,114,120,42,107,52,100,67,64,109,113,46,106,39,115,108,75,33};
 
 int main() {
-	
-	//Portada();
-	setlocale(LC_ALL, "spanish");
-	
 	//Cuerpo del programa
-	llenadoAtbash(abecedario, TAM, espacio, TAM, abecedarioA, TAM);
+	
+	/*llenadoAtbash(abecedario, TAM, espacio, TAM, abecedarioA, TAM);
 	llenadoCaezar(abecedario, TAM, espacio, TAM, abecedarioC, TAM);
-	llenadoAZ(abecedario,TAM, espacio, TAM, abecedarioAZ, TAM);
+	llenadoAZ(abecedario,TAM, espacio, TAM, abecedarioAZ, TAM);*/
+
+	thread hiloPortada(Portada);
+	thread hilollenadoAtbash(llenadoAtbash, abecedario, TAM, espacio, TAM, abecedarioA, TAM);
+	thread hilollenadoCaezar(llenadoCaezar, abecedario, TAM, espacio, TAM, abecedarioC, TAM);
+	thread hilollenadoAZ(llenadoAZ, abecedario, TAM, espacio, TAM, abecedarioAZ, TAM);
+
+	hiloPortada.join();
+	hilollenadoAtbash.join();
+	hilollenadoCaezar.join();
+	hilollenadoAZ.join();
 	
 	//código temporal para probar el programa
-	manual();
-	//lecturaDocumento();
+	//manual();
+	lecturaDocumento();
 	//Menu();
 	//parte final del código
+	setlocale(LC_ALL, "spanish");//Cambio el idioma de la consola a español
 	cout << "Esta es la parte final del programa" << endl;
 	cout << "Que la fuerza de velocidad te acompañe" << endl << endl;
 #ifdef _WIN32
@@ -123,17 +131,17 @@ void Portada() {
 		tiempoFaltante--;
 		cout << endl << endl << endl << endl << endl << endl << endl << endl;
 		cout << "                        |--------------------------------------------------------------|" << endl;
-		cout << "                        |                  INSTITUTO POLITCNICO NACIONAL               |" << endl;
-		cout << "                        |      Escuela Superior de Ingeier¡a Mec nica y electr¢nica    |" << endl;
-		cout << "                        |                        Unidad Culhuac n                      |" << endl;
-		cout << "                        |              Nombre: Mej¡a Casta¤eda Bryan Emmanuel          |" << endl;
+		cout << "                        |                 INSTITUTO POLITECNICO NACIONAL               |" << endl;
+		cout << "                        |     Escuela Superior de Ingenieria Mecanica y electronica    |" << endl;
+		cout << "                        |                        Unidad Culhuacan                      |" << endl;
+		cout << "                        |              Nombre: Mejia Castaneda Bryan Emmanuel          |" << endl;
 		cout << "                        |                     Materia: Estructura de datos             |" << endl;
-		cout << "                        |                    Proyecto: La máquina enigma               |" << endl;
+		cout << "                        |                    Proyecto: La maquina enigma               |" << endl;
 		cout << "                        |                          Grupo: 3CV25                        |" << endl;
-		cout << "                        |                   Profesor: Cruz Garc¡a Oscar                |" << endl;
+		cout << "                        |                   Profesor: Cruz Garcia Oscar                |" << endl;
 		cout << "                        |______________________________________________________________|" << endl << endl;
-		cout << "                                   Esta portada se quitar  en 30 segundos" << endl;
-		cout << "                               Recuerda que s¡ pudes imaginarlo, puedes programarlo" << endl << endl;
+		cout << "                                   Esta portada se quitara en 30 segundos" << endl;
+		cout << "                               Recuerda que si pudes imaginarlo, puedes programarlo" << endl << endl;
 
 		cout << setw(40) << "Faltan " << tiempoFaltante << " segundos para que desaparesca la portada" << endl << endl;
 		color(consola, 11);
@@ -149,17 +157,17 @@ void Portada() {
 
 			cout << endl << endl << endl << endl << endl << endl << endl << endl;
 			cout << "                        |--------------------------------------------------------------|" << endl;
-			cout << "                        |                  INSTITUTO POLITCNICO NACIONAL               |" << endl;
-			cout << "                        |      Escuela Superior de Ingeier¡a Mec nica y electr¢nica    |" << endl;
-			cout << "                        |                        Unidad Culhuac n                      |" << endl;
-			cout << "                        |              Nombre: Mej¡a Casta¤eda Bryan Emmanuel          |" << endl;
+			cout << "                        |                 INSTITUTO POLITECNICO NACIONAL               |" << endl;
+			cout << "                        |     Escuela Superior de Ingenieria Mecanica y electronica    |" << endl;
+			cout << "                        |                        Unidad Culhuacan                      |" << endl;
+			cout << "                        |              Nombre: Mejia Castaneda Bryan Emmanuel          |" << endl;
 			cout << "                        |                     Materia: Estructura de datos             |" << endl;
-			cout << "                        |                    Proyecto: La máquina enigma               |" << endl;
+			cout << "                        |                    Proyecto: La maquina enigma               |" << endl;
 			cout << "                        |                          Grupo: 3CV25                        |" << endl;
-			cout << "                        |                   Profesor: Cruz Garc¡a Oscar                |" << endl;
+			cout << "                        |                   Profesor: Cruz Garcia Oscar                |" << endl;
 			cout << "                        |______________________________________________________________|" << endl << endl;
-			cout << "                                   Esta portada se quitar  en 30 segundos" << endl;
-			cout << "                               Recuerda que s¡ pudes imaginarlo, puedes programarlo" << endl << endl;
+			cout << "                                   Esta portada se quitara en 30 segundos" << endl;
+			cout << "                               Recuerda que si pudes imaginarlo, puedes programarlo" << endl << endl;
 
 			cout << setw(40) << "Faltan " << tiempoFaltante << " segundos para que desaparesca la portada" << endl << endl;
 			color(consola, 10);
@@ -211,6 +219,16 @@ void manual() {
 	color(consola, 7);//color blanco
 	cout << "Ingrese el texto a cifrar: " << endl;
 	cin.getline(texto, 1000, '\n');//parte el texto ingresado por letras
+	color(consola, 10);//color verde
+	cout<<"Un momento por favor, el programa está cifrando el texto"<<endl;
+	color(consola, 7);//color blanco
+#ifdef _WIN32
+	Sleep(5000);
+	system("cls");
+#else
+	sleep(5000);
+	clrscr();
+#endif
 
 	/*
 	for (int i = 0; i < strlen(texto); i++) {//para saber que hay en cada espacio del arreglo,solo para DEPURACIÓN
@@ -240,6 +258,17 @@ void lecturaDocumento() {
 		getline(archivo, texto);//guardo el texto en una variable
 		cout<<texto<<endl;
 	}*/
+
+	color(consola, 10);//color verde
+	cout << "Un momento por favor, el programa está cifrando el texto" << endl;
+	color(consola, 7);//color blanco
+#ifdef _WIN32
+	Sleep(5000);
+	system("cls");
+#else
+	sleep(5000);
+	clrscr();
+#endif
 
 	while (archivo.getline(texto, capacidad)) {
 		//cout << texto << endl;
@@ -348,7 +377,7 @@ void llenadoAZ(char abecedario[], int tam_letra, int espacio[], int tam_espacio,
 void escrituraDocumento() {
 	HANDLE consola = GetStdHandle(STD_OUTPUT_HANDLE);
 	ofstream archivo;//creo un objeto de la clase ofstream
-	string nombreArchivo = NULL, cifrado = NULL;//variable para guardar el nombre del archivo
+	string nombreArchivo, cifrado;//variable para guardar el nombre del archivo
 	char respuesta = NULL;
 
 	//obtengo la dirección del escritorio
@@ -397,7 +426,7 @@ void escrituraDocumento() {
 			break;//salgo del ciclo
 
 		}
-		cifrado += textoAZ[i];//concateno el contenido del arreglo en una variable
+		cifrado =cifrado+ textoAZ[i];//concateno el contenido del arreglo en una variable
 	}
 	archivo << cifrado << endl;//escribo en el archivo
 	archivo.close();//cierro el archivo
