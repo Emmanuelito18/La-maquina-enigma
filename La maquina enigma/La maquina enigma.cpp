@@ -73,25 +73,18 @@ bool llamada = false;//para saber si se ha llamado a la función para nombrar el
 string direccion, nombreArchivo;//para guardar la dirección y el nombre del archivo
 int main() {
 	//Cuerpo del programa
-	
-	/*llenadoAtbash(abecedario, TAM, espacio, TAM, abecedarioA, TAM);
-	llenadoCaezar(abecedario, TAM, espacio, TAM, abecedarioC, TAM);
-	llenadoAZ(abecedario,TAM, espacio, TAM, abecedarioAZ, TAM);*/
-
-	thread hiloPortada(Portada);
-	thread hilollenadoAtbash(llenadoAtbash, abecedario, TAM, espacio, TAM, abecedarioA, TAM);
-	thread hilollenadoCaezar(llenadoCaezar, abecedario, TAM, espacio, TAM, abecedarioC, TAM);
-	thread hilollenadoAZ(llenadoAZ, abecedario, TAM, espacio, TAM, abecedarioAZ, TAM);
+	thread hiloPortada(Portada);//creo un hilo para la portada
+	thread hilollenadoAtbash(llenadoAtbash, abecedario, TAM, espacio, TAM, abecedarioA, TAM);//creo un hilo para el llenado de atbash
+	thread hilollenadoCaezar(llenadoCaezar, abecedario, TAM, espacio, TAM, abecedarioC, TAM);//creo un hilo para el llenado de caezar
+	thread hilollenadoAZ(llenadoAZ, abecedario, TAM, espacio, TAM, abecedarioAZ, TAM);//creo un hilo para el llenado de A1Z26
 
 	hiloPortada.join();
 	hilollenadoAtbash.join();
 	hilollenadoCaezar.join();
 	hilollenadoAZ.join();
 	
-	//código temporal para probar el programa
 	Menu();
 	//parte final del código
-
 	archivoSalida.close();//cierro el archivo
 	setlocale(LC_ALL, "spanish");//Cambio el idioma de la consola a español
 	cout << "Esta es la parte final del programa" << endl;
@@ -101,12 +94,7 @@ int main() {
 #else
 	getch();
 #endif
-	/*
-	delete texto;
-	delete textoA;
-	delete textoC;*/
 	return 0;
-	
 }
 //fin del código principal del programa
 
@@ -196,7 +184,7 @@ void Menu() {
 	cout << "1. Cifrar un texto ingresado manualmente" << endl;
 	cout << "2. Cifrar un documento de texto" << endl;
 	cout << "3. Salir" << endl;
-	cout << "Ingrese el número de su opción: ";
+	cout << "Ingrese el numero de su opcion: ";
 	cin >> opc;
 	switch (opc) {
 	case 1:
@@ -211,7 +199,7 @@ void Menu() {
 		cout << "mamahuevo" << endl;
 		break;
 	default:
-		cout << "Error, opción inválida por favor vuelva a intentar" << endl;
+		cout << "Error, opcion invalida por favor vuelva a intentar" << endl;
 	}
 }
 
@@ -219,12 +207,12 @@ void Menu() {
 void manual() {
 	HANDLE consola = GetStdHandle(STD_OUTPUT_HANDLE);
 	color(consola, 14);//color amarillo
-	cout<<"Atención, el programa solo acepta caracteres disponibles en el teclado en INGLÉS"<<endl;
+	cout<<"Atencion, el programa solo acepta caracteres disponibles en el teclado en INGLES"<<endl;
 	color(consola, 7);//color blanco
 	cout << "Ingrese el texto a cifrar: " << endl;
 	cin.getline(texto, 1000, '\n');//parte el texto ingresado por letras
 	color(consola, 10);//color verde
-	cout<<"Un momento por favor, el programa está cifrando el texto"<<endl;
+	cout<<"Un momento por favor, el programa esta cifrando el texto"<<endl;
 	color(consola, 7);//color blanco
 #ifdef _WIN32
 	Sleep(5000);
@@ -247,9 +235,10 @@ void lecturaDocumento() {
 	ifstream archivo;
 	string nombre;//variable para el uso del archivo .txt 
 	color(consola, 14);//color amarillo
-	cout << "Atención debe ser un archivo .txt, para que sea más fácil tenga el archivo de texto en el ESCRITORIO" << endl;
+	cout << "Atencion debe ser un archivo .txt, para que sea más fácil tenga el archivo de texto en el ESCRITORIO" << endl;
+	cout << "El programa solo acepta caracteres disponibles en el teclado INGLES" << endl;
 	color(consola, 7);//color blanco
-	cout << "Ingrese la dirección completa del archivo de texto a cifrar sin la extención del archivo: ";
+	cout << "Ingrese la direccion completa del archivo de texto a cifrar sin la extencion del archivo: ";
 	cin >> nombre;
 	nombre = nombre + ".txt";//concateno el nombre del archivo con la terminación .txt
 	
@@ -265,7 +254,7 @@ void lecturaDocumento() {
 	}*/
 
 	color(consola, 10);//color verde
-	cout << "Un momento por favor, el programa está cifrando el texto" << endl;
+	cout << "Un momento por favor, el programa esta cifrando el texto" << endl;
 	color(consola, 7);//color blanco
 #ifdef _WIN32
 	Sleep(5000);
@@ -400,7 +389,7 @@ void nombradoArchivo() {
 	if (respuesta == 's' || respuesta == 'S') {
 		color(consola, 14);//color amarillo
 		cout << "Ingrese el nombre del archivo SIN la extencion .txt" << endl;
-		cout << "El archivo se guardará en el escritorio" << endl;
+		cout << "El archivo se guardara en el escritorio" << endl;
 		color(consola, 7);//color blanco
 		cin >> nombreArchivo;//guardo el nombre del archivo
 		nombreArchivo = nombreArchivo + ".txt";//concateno el nombre del archivo con la extencion .txt
