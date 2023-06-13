@@ -136,9 +136,16 @@
     <ClInclude Include="A1Z26.h" />
     <ClInclude Include="Atbash.h" />
     <ClInclude Include="Caezar.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="La maquina enigma.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="charizard.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
