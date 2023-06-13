@@ -191,10 +191,12 @@ void Menu() {
 		case 1:
 			cin.ignore();//libero el búfer del teclado
 			manual();
+			opc= 3;//para que salga del ciclo
 			break;
 		case 2:
 			cin.ignore();
 			lecturaDocumento();
+			opc = 3;//para que salga del ciclo
 			break;
 		case 3:
 			break;
