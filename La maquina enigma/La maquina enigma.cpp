@@ -16,7 +16,7 @@
 #include <fstream>//para leer y escribir archivos
 #include <string>//para poder partir el texto introducido en caracteres
 #include <cctype>
-#include <thread>//para la programación por hilos, aún no implementado
+#include <thread>//para la programación por hilos
 
 //inclución de clases personales
 #include "Atbash.h"
