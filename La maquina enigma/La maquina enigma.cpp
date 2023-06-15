@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <locale.h>//para cambiar el idioma de la consola
 #include <iomanip>//para poder manipular el texto mostrado en consola
-#include <fstream>//para leer y escribir archivos, aún no implementado
+#include <fstream>//para leer y escribir archivos
 #include <string>//para poder partir el texto introducido en caracteres
 #include <cctype>
 #include <thread>//para la programación por hilos, aún no implementado
