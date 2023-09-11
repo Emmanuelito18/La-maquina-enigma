@@ -53,7 +53,7 @@ void escrituraDocumento(void);
 
 //declaración de variables globales
 const int capacidad = 1000;
-char texto[capacidad] = { 't','r','o','z','o',' ','h','o','l','a' }, textoA[capacidad], textoC[capacidad];
+char texto[capacidad], textoA[capacidad], textoC[capacidad];
 string textoAZ[capacidad];
 
 const int TAM = 95;
