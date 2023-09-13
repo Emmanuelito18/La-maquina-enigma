@@ -52,9 +52,9 @@ void nombradoArchivo(void);
 void escrituraDocumento(void);
 
 //declaración de variables globales
-const int capacidad = 1000;
-char texto[capacidad], textoA[capacidad], textoC[capacidad];
-string textoAZ[capacidad];
+const int capacidad = 1000;//capacidad del arreglo
+char texto[capacidad], textoA[capacidad], textoC[capacidad];//arreglo para guardar el texto a cifrar
+string textoAZ[capacidad];//arreglo para guardar el texto cifrado
 
 const int TAM = 95;
 char abecedario[TAM] = { '/','O','7','<','X','"','i','3','B','>','~','F','Q','a','P','Y','6','%','e',' ','u','I','c','V','{',';','L','t','n','b','5','|','H','[','p','E','A','D','`','U','&',')','\\','g','v','N','o','f','R','M','z','=','W','y','J','$','}','#','(','8','9','_','+','Z','h','0',':','^',',','2','-','1','w','S',']','G','?','T','r','x','*','k','4','d','C','@','m','q','.','j','\'','s','l','K','!' };
