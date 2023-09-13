@@ -232,11 +232,6 @@ void manual() {
 	sleep(5000);
 	clrscr();
 #endif
-
-	/*
-	for (int i = 0; i < strlen(texto); i++) {//para saber que hay en cada espacio del arreglo,solo para DEPURACIÓN
-		cout << texto[i] << endl;
-	}*/
 	nombradoArchivo();//llamo a la función para nombrar el archivo
 	CAtbash();
 }
@@ -259,11 +254,6 @@ void lecturaDocumento() {
 		cout << "No se pudo abrir el archivo" << endl;
 		exit(1);
 	}
-	/*while (!archivo.eof()) {//mientras no sea el final del archivo
-		getline(archivo, texto);//guardo el texto en una variable
-		cout<<texto<<endl;
-	}*/
-
 	color(consola, 10);//color verde
 	cout << "Un momento por favor, el programa esta cifrando el texto" << endl;
 	color(consola, 7);//color blanco
