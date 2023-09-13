@@ -53,10 +53,6 @@ void nombradoArchivo(void);
 void escrituraDocumento(void);
 
 //declaración de variables globales
-/*const int capacidad = 1000;//capacidad del arreglo
-char texto[capacidad], textoA[capacidad], textoC[capacidad];//arreglo para guardar el texto a cifrar
-string textoAZ[capacidad];//arreglo para guardar el texto cifrado*/
-
 vector<char>texto;//Se usa para guardar el texto ingresado por el usuario por caracteres
 vector<char>textoA;//e usa para guardar el texto cifrado por caracteres
 vector<char>textoC;//Se usa para guardar el texto cifrado por caracteres
@@ -228,8 +224,6 @@ void manual() {
 	cout<<"Atencion, el programa solo acepta caracteres disponibles en el teclado en INGLES"<<endl;
 	color(consola, 7);//color blanco
 	cout << "Ingrese el texto a cifrar: " << endl;
-	//cin.getline(texto, 1000, '\n');//parte el texto ingresado por letras
-
 	getline(cin, ingresion);//guardo el texto ingresado en una variable
 	for (char c : ingresion) {//recorro el texto ingresado
 		texto.push_back(c);//guardo el texto ingresado en un arreglo
@@ -277,15 +271,6 @@ void lecturaDocumento() {
 	clrscr();
 #endif
 	nombradoArchivo();//llamo a la función para nombrar el archivo
-
-	/*while (archivo.getline(texto, capacidad)) {
-		//cout << texto << endl;
-		CAtbash();
-		for (int i = 0; i < capacidad; i++) {
-			texto[i]= NULL;
-		}
-	}*/
-
 	while (getline(archivo, ingresion)) {
 		for (char c : ingresion) {//recorro el texto ingresado
 					texto.push_back(c);//guardo el texto ingresado en un arreglo
@@ -308,13 +293,7 @@ void lecturaDocumento() {
 void CAtbash() {
 	char caracter = NULL;
 	int entero = NULL;
-	//cout<<"imprimiendo el resultado de Atbash"<<endl;
-	/*for (int i = 0; i <strlen(texto); i++) {//para recorrer el arreglo mientras no haya un caracter nulo \n
-		caracter = texto[i];//guardo el caracter en una variable
-		entero=int(caracter);//convierto el caracter a su valor en la tabla ASCII
-		textoA[i] = atbash.cifrar(entero);//busco el caracter en el árbol
-	}*/
-
+	//cout<<"imprimiendo el resultado de Atbash"<<endl
 	for (char c : texto) {
 		entero=int(c);//convierto el caracter a su valor en la tabla ASCII
 		textoA.push_back(atbash.cifrar(entero));//busco el caracter en el árbol
@@ -327,12 +306,6 @@ void CCaezar() {
 	char caracter = NULL;
 	int entero = NULL;
 	//cout<<"imprimiendo el resultado de Caezar"<<endl;
-	/*for (int i = 0; i < strlen(textoA); i++) {//para recorrer el arreglo mientras no haya un caracter nulo \n
-		caracter = textoA[i];//guardo el caracter en una variable
-		entero=int(caracter);//convierto el caracter a su valor en la tabla ASCII
-		textoC[i] = caezar.cifrar(entero);//busco el caracter en el árbol
-	}*/
-
 	for (char c : textoA) {
 		entero = int(c);//convierto el caracter a su valor en la tabla ASCII
 		textoC.push_back(caezar.cifrar(entero));//busco el caracter en el árbol
@@ -345,12 +318,6 @@ void CA1Z26() {
 	char caracter = NULL;
 	int entero = NULL;
 	//cout << "imprimiendo el resultado de A1Z26" << endl;
-	/*for (int i = 0; i < strlen(textoC); i++) {
-		caracter = textoC[i];
-		entero = int(caracter);
-		textoAZ[i] = a1z26.cifrar(entero);
-	}*/
-
 	for (char c : textoC) {
 		entero = int(c);//convierto el caracter a su valor en la tabla ASCII
 		textoAZ.push_back(a1z26.cifrar(entero));//busco el caracter en el árbol
@@ -419,7 +386,6 @@ void nombradoArchivo() {
 		cout << "Error al obtener la direccion del escritorio" << endl;
 		exit(1);
 	}
-
 	cout << "Quiere nombrar el archivo de salida? (s/n)" << endl;
 	cin >> respuesta;
 	if (respuesta == 's' || respuesta == 'S') {
@@ -449,14 +415,6 @@ void escrituraDocumento() {
 	string cifrado;//variable para guardar el nombre del archivo
 
 	//recorro el arreglo de cifrado concatenando el contenido
-	/*for (int i = 0; i < capacidad; i++) {
-		if (textoAZ[i].empty()) {//si el arreglo esta vacio
-			break;//salgo del ciclo
-
-		}
-		cifrado = cifrado + textoAZ[i];//concateno el contenido del arreglo en una variable
-	}*/
-
 	for (string c : textoAZ) {
 		cifrado = cifrado + c;//concateno el contenido del arreglo en una variable
 	}
