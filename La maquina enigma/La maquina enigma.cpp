@@ -8,7 +8,7 @@
 #include <conio.h>
 #endif
 
-#include <iostream>
+#include <iostream>//para poder usar cout y cin
 #include <stdlib.h>
 #include <stdio.h>
 #include <locale.h>//para cambiar el idioma de la consola
