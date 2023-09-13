@@ -52,9 +52,9 @@ void nombradoArchivo(void);
 void escrituraDocumento(void);
 
 //declaración de variables globales
-const int capacidad = 1000;
-char texto[capacidad], textoA[capacidad], textoC[capacidad];
-string textoAZ[capacidad];
+const int capacidad = 1000;//capacidad del arreglo
+char texto[capacidad], textoA[capacidad], textoC[capacidad];//arreglo para guardar el texto a cifrar
+string textoAZ[capacidad];//arreglo para guardar el texto cifrado
 
 const int TAM = 95;
 char abecedario[TAM] = { '/','O','7','<','X','"','i','3','B','>','~','F','Q','a','P','Y','6','%','e',' ','u','I','c','V','{',';','L','t','n','b','5','|','H','[','p','E','A','D','`','U','&',')','\\','g','v','N','o','f','R','M','z','=','W','y','J','$','}','#','(','8','9','_','+','Z','h','0',':','^',',','2','-','1','w','S',']','G','?','T','r','x','*','k','4','d','C','@','m','q','.','j','\'','s','l','K','!' };
@@ -232,11 +232,6 @@ void manual() {
 	sleep(5000);
 	clrscr();
 #endif
-
-	/*
-	for (int i = 0; i < strlen(texto); i++) {//para saber que hay en cada espacio del arreglo,solo para DEPURACIÓN
-		cout << texto[i] << endl;
-	}*/
 	nombradoArchivo();//llamo a la función para nombrar el archivo
 	CAtbash();
 }
@@ -259,11 +254,6 @@ void lecturaDocumento() {
 		cout << "No se pudo abrir el archivo" << endl;
 		exit(1);
 	}
-	/*while (!archivo.eof()) {//mientras no sea el final del archivo
-		getline(archivo, texto);//guardo el texto en una variable
-		cout<<texto<<endl;
-	}*/
-
 	color(consola, 10);//color verde
 	cout << "Un momento por favor, el programa esta cifrando el texto" << endl;
 	color(consola, 7);//color blanco
