@@ -15,8 +15,9 @@
 #include <iomanip>//para poder manipular el texto mostrado en consola
 #include <fstream>//para leer y escribir archivos
 #include <string>//para poder partir el texto introducido en caracteres
-#include <cctype>
+#include <cctype>//para poder convertir los caracteres a su valor en la tabla ASCII
 #include <thread>//para la programación por hilos
+#include <vector>//para poder utilizar arreglos dinamicos
 
 //inclución de clases personales
 #include "Atbash.h"
