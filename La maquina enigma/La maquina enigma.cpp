@@ -449,12 +449,16 @@ void escrituraDocumento() {
 	string cifrado;//variable para guardar el nombre del archivo
 
 	//recorro el arreglo de cifrado concatenando el contenido
-	for (int i = 0; i < capacidad; i++) {
+	/*for (int i = 0; i < capacidad; i++) {
 		if (textoAZ[i].empty()) {//si el arreglo esta vacio
 			break;//salgo del ciclo
 
 		}
 		cifrado = cifrado + textoAZ[i];//concateno el contenido del arreglo en una variable
+	}*/
+
+	for (string c : textoAZ) {
+		cifrado = cifrado + c;//concateno el contenido del arreglo en una variable
 	}
 	archivoSalida << cifrado << endl;//escribo en el archivo
 }
