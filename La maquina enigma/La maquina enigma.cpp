@@ -23,6 +23,7 @@
 #include "Atbash.h"
 #include "Caezar.h"
 #include "A1Z26.h"
+#include "Portada.h"
 
 #define color SetConsoleTextAttribute
 
@@ -34,7 +35,6 @@ Caezar caezar;
 A1Z26 a1z26;
 
 //prototipado de funciones
-void Portada(void);
 void Menu(void);
 //Inserción
 void manual(void);
@@ -75,8 +75,9 @@ ofstream archivoSalida;//creo un objeto de la clase ofstream
 bool llamada = false;//para saber si se ha llamado a la función para nombrar el archivo
 string direccion, nombreArchivo;//para guardar la dirección y el nombre del archivo
 int main() {
+	Portada portada;
 	//Cuerpo del programa
-	thread hiloPortada(Portada);//creo un hilo para la portada
+	thread hiloPortada(&Portada::mostrarPortada,&portada);//creo un hilo para la portada
 	thread hilollenadoAtbash(llenadoAtbash, abecedario, TAM, espacio, TAM, abecedarioA, TAM);//creo un hilo para el llenado de atbash
 	thread hilollenadoCaezar(llenadoCaezar, abecedario, TAM, espacio, TAM, abecedarioC, TAM);//creo un hilo para el llenado de caezar
 	thread hilollenadoAZ(llenadoAZ, abecedario, TAM, espacio, TAM, abecedarioAZ, TAM);//creo un hilo para el llenado de A1Z26
@@ -102,85 +103,6 @@ int main() {
 //fin del código principal del programa
 
 //definición de funciones
-void Portada() {
-	HANDLE consola = GetStdHandle(STD_OUTPUT_HANDLE);
-	char progreso = char(219);
-	/*convierte el numero 219 en su equivalente al código ascii, esto se utiliza para mostrar el progreso de la barra*/
-
-	char barra[31] = { ' ',' ',' ',' ',' ',' ',' ',' ',' ',' '
-					,' ',' ',' ',' ',' ',' ',' ',' ',' ',' '
-					,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',0 };
-	/*En este arreglo, se mostrará el progreso*/
-	int tiempoFaltante = 30;
-
-	for (int contador = 0; contador < 30; contador++) {
-		barra[contador] = progreso;
-		/*llena el arreglo con el caracter 219*/
-#ifdef _WIN32
-		Sleep(1000);
-		system("cls");
-#else
-		sleep(1000);
-		clrscr();
-#endif
-		tiempoFaltante--;
-		cout << endl << endl << endl << endl << endl << endl << endl << endl;
-		cout << "                        |--------------------------------------------------------------|" << endl;
-		cout << "                        |                 INSTITUTO POLITECNICO NACIONAL               |" << endl;
-		cout << "                        |     Escuela Superior de Ingenieria Mecanica y electronica    |" << endl;
-		cout << "                        |                        Unidad Culhuacan                      |" << endl;
-		cout << "                        |              Nombre: Mejia Castaneda Bryan Emmanuel          |" << endl;
-		cout << "                        |                     Materia: Estructura de datos             |" << endl;
-		cout << "                        |                    Proyecto: La maquina enigma               |" << endl;
-		cout << "                        |                          Grupo: 3CV25                        |" << endl;
-		cout << "                        |                   Profesor: Cruz Garcia Oscar                |" << endl;
-		cout << "                        |______________________________________________________________|" << endl << endl;
-		cout << "                                   Esta portada se quitara en 30 segundos" << endl;
-		cout << "                               Recuerda que si pudes imaginarlo, puedes programarlo" << endl << endl;
-
-		cout << setw(40) << "Faltan " << tiempoFaltante << " segundos para que desaparesca la portada" << endl << endl;
-		color(consola, 11);
-		cout << setw(70) << barra << endl;
-		color(consola, 7);
-
-		if (tiempoFaltante == 0) {
-#ifdef _WIN32
-			system("cls");
-#else
-			clrscr();
-#endif
-
-			cout << endl << endl << endl << endl << endl << endl << endl << endl;
-			cout << "                        |--------------------------------------------------------------|" << endl;
-			cout << "                        |                 INSTITUTO POLITECNICO NACIONAL               |" << endl;
-			cout << "                        |     Escuela Superior de Ingenieria Mecanica y electronica    |" << endl;
-			cout << "                        |                        Unidad Culhuacan                      |" << endl;
-			cout << "                        |              Nombre: Mejia Castaneda Bryan Emmanuel          |" << endl;
-			cout << "                        |                     Materia: Estructura de datos             |" << endl;
-			cout << "                        |                    Proyecto: La maquina enigma               |" << endl;
-			cout << "                        |                          Grupo: 3CV25                        |" << endl;
-			cout << "                        |                   Profesor: Cruz Garcia Oscar                |" << endl;
-			cout << "                        |______________________________________________________________|" << endl << endl;
-			cout << "                                   Esta portada se quitara en 30 segundos" << endl;
-			cout << "                               Recuerda que si pudes imaginarlo, puedes programarlo" << endl << endl;
-
-			cout << setw(40) << "Faltan " << tiempoFaltante << " segundos para que desaparesca la portada" << endl << endl;
-			color(consola, 10);
-			cout << setw(70) << barra << endl;
-			color(consola, 7);
-		}
-
-		/*Muestra el progreso*/
-	}
-#ifdef _WIN32
-	Sleep(1000);
-	system("cls");
-#else
-	sleep(1000);
-	clrscr();
-#endif
-}
-
 void Menu() {
 	int opc = 0;
 	do {
