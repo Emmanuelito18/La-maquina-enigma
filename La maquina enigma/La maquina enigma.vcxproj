@@ -131,12 +131,15 @@
     <ClCompile Include="Atbash.cpp" />
     <ClCompile Include="Caezar.cpp" />
     <ClCompile Include="La maquina enigma.cpp" />
+    <ClCompile Include="Portada.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A1Z26.h" />
     <ClInclude Include="Atbash.h" />
     <ClInclude Include="Caezar.h" />
+    <ClInclude Include="Portada.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
@@ -146,6 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="charizard.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="moneda.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
