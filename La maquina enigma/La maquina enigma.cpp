@@ -75,7 +75,7 @@ ofstream archivoSalida;//creo un objeto de la clase ofstream
 bool llamada = false;//para saber si se ha llamado a la función para nombrar el archivo
 string direccion, nombreArchivo;//para guardar la dirección y el nombre del archivo
 int main() {
-	Portada portada;
+	Portada portada;//creo un objeto de la clase portada
 	//Cuerpo del programa
 	thread hiloPortada(&Portada::mostrarPortada,&portada);//creo un hilo para la portada
 	thread hilollenadoAtbash(llenadoAtbash, abecedario, TAM, espacio, TAM, abecedarioA, TAM);//creo un hilo para el llenado de atbash

@@ -13,12 +13,12 @@
       </Struct>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABAgAAAACBgAAAABAAAACAAAEAABAAASAA=</HashCode>
+      <HashCode>AAAAAAAQAABAgAAAACBgAAAABAAAACAAAEAABAAASAA=</HashCode>
       <FileName>Atbash.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Caezar">
-    <Position X="2.5" Y="0.5" Width="1.5" />
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -30,12 +30,12 @@
       </Struct>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAFAAAAAACBgAAAABAAAACAAAEAABAAACAA=</HashCode>
+      <HashCode>AAAAAAAQAAFAAAAAACBgAAAABAAAACAAAEAABAAACAA=</HashCode>
       <FileName>Caezar.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="A1Z26">
-    <Position X="4.5" Y="0.5" Width="1.5" />
+    <Position X="4" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -47,8 +47,15 @@
       </Struct>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABBgAAAACBgAAAABAAAACAAAEAABAAACAA=</HashCode>
+      <HashCode>AAAAAAAQAABBgAAAACBgAAAABAAAACAAAEAABAAACAA=</HashCode>
       <FileName>A1Z26.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Portada">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAEAAAAAAAAIAAIACAIAAAAAAAAAAAAAkAAA=</HashCode>
+      <FileName>Portada.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
